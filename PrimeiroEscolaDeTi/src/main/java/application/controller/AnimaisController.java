@@ -26,4 +26,16 @@ public class AnimaisController {
 		animais.add(new Animal(System.currentTimeMillis(), nome));
 		return "Novo animal: " + nome;
 	}
+	
+	@RequestMapping(value="/remove", method = RequestMethod.POST)
+	public String deletaAnimais(@RequestBody(required=true) String nome){
+		for (Animal animal : animais) {
+			if(animal.getNome().equals(nome)){
+				animais.remove(animal);
+			}
+			
+		}
+		
+		return "Deletado o animal: " + nome;
+	}
 }
